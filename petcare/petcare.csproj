@@ -62,6 +62,12 @@
     <Compile Include="customerPurchase.Designer.cs">
       <DependentUpon>customerPurchase.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forsasfsefm1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forsasfsefm1.Designer.cs">
+      <DependentUpon>Forsasfsefm1.cs</DependentUpon>
+    </Compile>
     <Compile Include="login.cs">
       <SubType>Form</SubType>
     </Compile>
