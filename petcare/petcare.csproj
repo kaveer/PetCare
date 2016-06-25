@@ -94,12 +94,6 @@
     <Compile Include="stockManagement.Designer.cs">
       <DependentUpon>stockManagement.cs</DependentUpon>
     </Compile>
-    <Compile Include="test1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="test1.Designer.cs">
-      <DependentUpon>test1.cs</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="addCustomerPet.resx">
       <DependentUpon>addCustomerPet.cs</DependentUpon>
     </EmbeddedResource>
