@@ -68,6 +68,12 @@
     <Compile Include="login.Designer.cs">
       <DependentUpon>login.cs</DependentUpon>
     </Compile>
+    <Compile Include="petcare1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="petcare1.Designer.cs">
+      <DependentUpon>petcare1.cs</DependentUpon>
+    </Compile>
     <Compile Include="petTreatment.cs">
       <SubType>Form</SubType>
     </Compile>
