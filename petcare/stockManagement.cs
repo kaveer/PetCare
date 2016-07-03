@@ -42,7 +42,7 @@ namespace petcare
                     }
                     else
                     {
-                        SqlConnection Conn = new SqlConnection(@"Data Source=kaveer-pc\SQL12HOMEMASTER;Initial Catalog=petcare;Integrated Security=True");
+                        SqlConnection Conn = new SqlConnection(@"Data Source=KAVEER-PC\MSSQL;Initial Catalog=petcare;Integrated Security=True");
                         SqlCommand Comm1 = new SqlCommand("select * from productTable where category = @category and productStatus = 'active'", Conn);
                         Comm1.Parameters.AddWithValue("@category", ddlCategory.Text.ToLower());
                         Conn.Open();
@@ -71,13 +71,13 @@ namespace petcare
         private int setProduct(string brand, string category)
         {
             int proId = 0;
-            SqlConnection conn = new SqlConnection(@"Data Source=kaveer-pc\SQL12HOMEMASTER;Initial Catalog=petcare;Integrated Security=True");
+            SqlConnection conn = new SqlConnection(@"Data Source=KAVEER-PC\MSSQL;Initial Catalog=petcare;Integrated Security=True");
             conn.Open();
             SqlCommand cmd = new SqlCommand("insert into productTable(brand , category , productStatus) values('"+brand+"' , '"+category.ToLower()+"' , 'active')", conn);
             cmd.ExecuteNonQuery();
             conn.Close();
 
-            SqlConnection Connn = new SqlConnection(@"Data Source=kaveer-pc\SQL12HOMEMASTER;Initial Catalog=petcare;Integrated Security=True");
+            SqlConnection Connn = new SqlConnection(@"Data Source=KAVEER-PC\MSSQL;Initial Catalog=petcare;Integrated Security=True");
             SqlCommand Comm1n = new SqlCommand("select * from productTable where category = @category", Connn);
             Comm1n.Parameters.AddWithValue("@category", ddlCategory.Text.ToLower());
             Connn.Open();
@@ -91,7 +91,7 @@ namespace petcare
 
         private void checkSetProductType()
         {
-            SqlConnection Conn = new SqlConnection(@"Data Source=kaveer-pc\SQL12HOMEMASTER;Initial Catalog=petcare;Integrated Security=True");
+            SqlConnection Conn = new SqlConnection(@"Data Source=KAVEER-PC\MSSQL;Initial Catalog=petcare;Integrated Security=True");
             SqlCommand Comm1 = new SqlCommand("select * from productDetailsTable as pd inner join productTable as p on p.productId = pd.productId where productType = @type and Productweight = @weight and productDetailStatus = 'active' and category = '" + ddlCategory.Text.ToLower() + "'", Conn);
             Comm1.Parameters.AddWithValue("@type", ddlType.Text.ToLower());
             Comm1.Parameters.AddWithValue("@weight",ddlWeight.SelectedItem.ToString());
@@ -105,7 +105,7 @@ namespace petcare
             }
             else if (DR1.Read() == false)
             {
-                SqlConnection conn = new SqlConnection(@"Data Source=kaveer-pc\SQL12HOMEMASTER;Initial Catalog=petcare;Integrated Security=True");
+                SqlConnection conn = new SqlConnection(@"Data Source=KAVEER-PC\MSSQL;Initial Catalog=petcare;Integrated Security=True");
                 conn.Open();
                 SqlCommand cmd = new SqlCommand("insert into productDetailsTable(productId ,productType, Productweight , quantity, productDetailStatus) values (@proId,@type,@wei,@quan,'active')", conn);
                 cmd.Parameters.AddWithValue("@proId" , variableCategoryId);
@@ -120,7 +120,7 @@ namespace petcare
 
         private void updateQuantity()
         {
-            SqlConnection conn = new SqlConnection(@"Data Source=kaveer-pc\SQL12HOMEMASTER;Initial Catalog=petcare;Integrated Security=True");
+            SqlConnection conn = new SqlConnection(@"Data Source=KAVEER-PC\MSSQL;Initial Catalog=petcare;Integrated Security=True");
             conn.Open();
             SqlCommand cmd = new SqlCommand("update productDetailsTable set quantity = @quan where productDetailId = @proId", conn);
             cmd.Parameters.AddWithValue("@proId", variableProductDetailId);
@@ -141,7 +141,7 @@ namespace petcare
             // display petname in combobox
             DataSet ds2;
             SqlConnection conn = new SqlConnection();
-            conn.ConnectionString = @"Data Source=kaveer-pc\SQL12HOMEMASTER;Initial Catalog=petcare;Integrated Security=True";
+            conn.ConnectionString = @"Data Source=KAVEER-PC\MSSQL;Initial Catalog=petcare;Integrated Security=True";
             conn.Open();
             SqlDataAdapter daSearch = new SqlDataAdapter("select * from productTable where productStatus = 'active'", conn);
             ds2 = new DataSet();
@@ -158,7 +158,7 @@ namespace petcare
             // display petname in combobox
             DataSet ds2;
             SqlConnection conn = new SqlConnection();
-            conn.ConnectionString = @"Data Source=kaveer-pc\SQL12HOMEMASTER;Initial Catalog=petcare;Integrated Security=True";
+            conn.ConnectionString = @"Data Source=KAVEER-PC\MSSQL;Initial Catalog=petcare;Integrated Security=True";
             conn.Open();
             SqlDataAdapter daSearch = new SqlDataAdapter("select distinct(productType) from productDetailsTable where productDetailStatus = 'active'", conn);
             ds2 = new DataSet();
@@ -178,7 +178,7 @@ namespace petcare
 
         private void displayUsingGridView()
         {
-            using (SqlConnection con = new SqlConnection(@"Data Source=kaveer-pc\SQL12HOMEMASTER;Initial Catalog=petcare;Integrated Security=True"))
+            using (SqlConnection con = new SqlConnection(@"Data Source=KAVEER-PC\MSSQL;Initial Catalog=petcare;Integrated Security=True"))
             {
                 con.Open();
                 using (SqlDataAdapter adapter = new SqlDataAdapter("select brand , category , productType as [type] , Productweight as [weight] , quantity from productTable as p inner join productDetailsTable as pd on pd.productId=p.productId  where productStatus = 'active' and productDetailStatus = 'active'", con))

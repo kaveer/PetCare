@@ -27,8 +27,8 @@ namespace petcare
         {
             txtRefNo.Text = RandomString(4);
             getPetType();
-            
-            SqlConnection Conn = new SqlConnection(@"Data Source=kaveer-pc\SQL12HOMEMASTER;Initial Catalog=petcare;Integrated Security=True");
+
+            SqlConnection Conn = new SqlConnection(@"Data Source=KAVEER-PC\MSSQL;Initial Catalog=petcare;Integrated Security=True");
             SqlCommand Comm1 = new SqlCommand("select * from petTypeTable where petType = @pet and petTypeStatus = 'active'", Conn);
             Comm1.Parameters.AddWithValue("@pet", ddlPet.Text.ToLower());
             Conn.Open();
@@ -41,7 +41,7 @@ namespace petcare
 
             DataSet ds2;
             SqlConnection conn = new SqlConnection();
-            conn.ConnectionString = @"Data Source=kaveer-pc\SQL12HOMEMASTER;Initial Catalog=petcare;Integrated Security=True";
+            conn.ConnectionString = @"Data Source=KAVEER-PC\MSSQL;Initial Catalog=petcare;Integrated Security=True";
             conn.Open();
             SqlDataAdapter daSearch = new SqlDataAdapter("select * from breedTable where petTypeId = '" +  VariablePetTypeId  +"' and breedStatus = 'active'", conn);
             ds2 = new DataSet();
@@ -92,7 +92,7 @@ namespace petcare
                     {
                         txtTelNo.Text = "Unknown";
                     }
-                    SqlConnection Conn = new SqlConnection(@"Data Source=kaveer-pc\SQL12HOMEMASTER;Initial Catalog=petcare;Integrated Security=True");
+                    SqlConnection Conn = new SqlConnection(@"Data Source=KAVEER-PC\MSSQL;Initial Catalog=petcare;Integrated Security=True");
                     SqlCommand Comm1 = new SqlCommand("select * from customerTable where refNo = @refno and customerStatus = 'active' ", Conn);
                     Comm1.Parameters.AddWithValue("@refno", txtRefNo.Text);
                     Conn.Open();
@@ -140,7 +140,7 @@ namespace petcare
                     }
                     else if (DR1.Read() == false)
                     {
-                        SqlConnection conn = new SqlConnection(@"Data Source=kaveer-pc\SQL12HOMEMASTER;Initial Catalog=petcare;Integrated Security=True");
+                        SqlConnection conn = new SqlConnection(@"Data Source=KAVEER-PC\MSSQL;Initial Catalog=petcare;Integrated Security=True");
                         conn.Open();
                         SqlCommand cmd = new SqlCommand("insert into customerTable(refNo, customerName, customerSurname, customerAddress , customerTellNo , customerStatus) values(@ref,@name,@surname,@address,@telno,'active')", conn);
                         cmd.Parameters.AddWithValue("@ref", txtRefNo.Text);
@@ -198,7 +198,7 @@ namespace petcare
         private int getCustomerId()
         {
             int customerId = 0;
-            SqlConnection Conn = new SqlConnection(@"Data Source=kaveer-pc\SQL12HOMEMASTER;Initial Catalog=petcare;Integrated Security=True");
+            SqlConnection Conn = new SqlConnection(@"Data Source=KAVEER-PC\MSSQL;Initial Catalog=petcare;Integrated Security=True");
             SqlCommand Comm1 = new SqlCommand("select * from customerTable where refNo = @refno and customerStatus = 'active' ", Conn);
             Comm1.Parameters.AddWithValue("@refno", txtRefNo.Text);
             Conn.Open();
@@ -213,7 +213,7 @@ namespace petcare
 
         private void btnSearchCustomer_Click(object sender, EventArgs e)
         {
-            SqlConnection Conn = new SqlConnection(@"Data Source=kaveer-pc\SQL12HOMEMASTER;Initial Catalog=petcare;Integrated Security=True");
+            SqlConnection Conn = new SqlConnection(@"Data Source=KAVEER-PC\MSSQL;Initial Catalog=petcare;Integrated Security=True");
             SqlCommand Comm1 = new SqlCommand("select * from customerTable where refNo = @refno and customerStatus = 'active' ", Conn);
             Comm1.Parameters.AddWithValue("@refno", txtRefNo.Text);
             Conn.Open();
@@ -234,7 +234,7 @@ namespace petcare
 
         private void checkPetType(string pettype)
         {
-            SqlConnection Conn = new SqlConnection(@"Data Source=kaveer-pc\SQL12HOMEMASTER;Initial Catalog=petcare;Integrated Security=True");
+            SqlConnection Conn = new SqlConnection(@"Data Source=KAVEER-PC\MSSQL;Initial Catalog=petcare;Integrated Security=True");
             SqlCommand Comm1 = new SqlCommand("select * from petTypeTable where petType = @pet and petTypeStatus = 'active'", Conn);
             Comm1.Parameters.AddWithValue("@pet", pettype.ToLower());
             Conn.Open();
@@ -253,14 +253,14 @@ namespace petcare
 
         private void setPetType(string pet)
         {
-            SqlConnection conn = new SqlConnection(@"Data Source=kaveer-pc\SQL12HOMEMASTER;Initial Catalog=petcare;Integrated Security=True");
+            SqlConnection conn = new SqlConnection(@"Data Source=KAVEER-PC\MSSQL;Initial Catalog=petcare;Integrated Security=True");
             conn.Open();
             SqlCommand cmd = new SqlCommand("insert into petTypeTable(petType, petTypeStatus) values(@petType,'active')", conn);
             cmd.Parameters.AddWithValue("@petType", pet.ToLower());
             cmd.ExecuteNonQuery();
             conn.Close();
 
-            SqlConnection Connn = new SqlConnection(@"Data Source=kaveer-pc\SQL12HOMEMASTER;Initial Catalog=petcare;Integrated Security=True");
+            SqlConnection Connn = new SqlConnection(@"Data Source=KAVEER-PC\MSSQL;Initial Catalog=petcare;Integrated Security=True");
             SqlCommand Comm1n = new SqlCommand("select * from petTypeTable where petType = @pet and petTypeStatus = 'active'", Connn);
             Comm1n.Parameters.AddWithValue("@pet", pet.ToLower());
             Connn.Open();
@@ -274,7 +274,7 @@ namespace petcare
 
         private void checkBreed(string breedName)
         {
-            SqlConnection Conn = new SqlConnection(@"Data Source=kaveer-pc\SQL12HOMEMASTER;Initial Catalog=petcare;Integrated Security=True");
+            SqlConnection Conn = new SqlConnection(@"Data Source=KAVEER-PC\MSSQL;Initial Catalog=petcare;Integrated Security=True");
             SqlCommand Comm1 = new SqlCommand("select * from breedTable where breedName = @breed and breedStatus = 'active'", Conn);
             Comm1.Parameters.AddWithValue("@breed", breedName.ToLower());
             Conn.Open();
@@ -293,7 +293,7 @@ namespace petcare
 
         private void setBreed(string breed , int petType)
         {
-            SqlConnection conn = new SqlConnection(@"Data Source=kaveer-pc\SQL12HOMEMASTER;Initial Catalog=petcare;Integrated Security=True");
+            SqlConnection conn = new SqlConnection(@"Data Source=KAVEER-PC\MSSQL;Initial Catalog=petcare;Integrated Security=True");
             conn.Open();
             SqlCommand cmd = new SqlCommand("insert into breedTable(breedName, petTypeId ,breedStatus) values(@breed,@typeId ,'active')", conn);
             cmd.Parameters.AddWithValue("@breed", breed.ToLower());
@@ -302,7 +302,7 @@ namespace petcare
             conn.Close();
 
             //get breed Id
-            SqlConnection Connn = new SqlConnection(@"Data Source=kaveer-pc\SQL12HOMEMASTER;Initial Catalog=petcare;Integrated Security=True");
+            SqlConnection Connn = new SqlConnection(@"Data Source=KAVEER-PC\MSSQL;Initial Catalog=petcare;Integrated Security=True");
             SqlCommand Comm1n = new SqlCommand("select * from breedTable where breedName = @breed and breedStatus = 'active'", Connn);
             Comm1n.Parameters.AddWithValue("@breed", breed.ToLower());
             Connn.Open();
@@ -318,7 +318,7 @@ namespace petcare
         {
             DataSet ds2;
             SqlConnection conn = new SqlConnection();
-            conn.ConnectionString = @"Data Source=kaveer-pc\SQL12HOMEMASTER;Initial Catalog=petcare;Integrated Security=True";
+            conn.ConnectionString = @"Data Source=KAVEER-PC\MSSQL;Initial Catalog=petcare;Integrated Security=True";
             conn.Open();
             SqlDataAdapter daSearch = new SqlDataAdapter("select * from petTypeTable where petTypeStatus='active'", conn);
             ds2 = new DataSet();
@@ -331,7 +331,7 @@ namespace petcare
 
         private void ddlPet_SelectedIndexChanged(object sender, EventArgs e)
         {
-            SqlConnection Conn = new SqlConnection(@"Data Source=kaveer-pc\SQL12HOMEMASTER;Initial Catalog=petcare;Integrated Security=True");
+            SqlConnection Conn = new SqlConnection(@"Data Source=KAVEER-PC\MSSQL;Initial Catalog=petcare;Integrated Security=True");
             SqlCommand Comm1 = new SqlCommand("select * from petTypeTable where petType = @pet and petTypeStatus = 'active'", Conn);
             Comm1.Parameters.AddWithValue("@pet", ddlPet.Text.ToLower());
             Conn.Open();
@@ -344,7 +344,7 @@ namespace petcare
 
             DataSet ds2;
             SqlConnection conn = new SqlConnection();
-            conn.ConnectionString = @"Data Source=kaveer-pc\SQL12HOMEMASTER;Initial Catalog=petcare;Integrated Security=True";
+            conn.ConnectionString = @"Data Source=KAVEER-PC\MSSQL;Initial Catalog=petcare;Integrated Security=True";
             conn.Open();
             SqlDataAdapter daSearch = new SqlDataAdapter("select * from breedTable where petTypeId = '" + VariablePetTypeId + "' and breedStatus = 'active'", conn);
             ds2 = new DataSet();
@@ -359,7 +359,7 @@ namespace petcare
 
         private void setPetDetail()
         {
-            SqlConnection conn = new SqlConnection(@"Data Source=kaveer-pc\SQL12HOMEMASTER;Initial Catalog=petcare;Integrated Security=True");
+            SqlConnection conn = new SqlConnection(@"Data Source=KAVEER-PC\MSSQL;Initial Catalog=petcare;Integrated Security=True");
             conn.Open();
             SqlCommand cmd = new SqlCommand("insert into petTable(customerId,breedId,petName,gender,color,petDetails,petStatus) values(@cusid,@breedid,@name,@gender,@color,@details,'active')", conn);
             cmd.Parameters.AddWithValue("@cusid", VariableCustomerId);

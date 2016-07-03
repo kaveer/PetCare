@@ -55,7 +55,7 @@ namespace petcare
             {
                 try
                 {
-                    SqlConnection conn = new SqlConnection(@"Data Source=kaveer-pc\SQL12HOMEMASTER;Initial Catalog=petcare;Integrated Security=True");
+                    SqlConnection conn = new SqlConnection(@"Data Source=KAVEER-PC\MSSQL;Initial Catalog=petcare;Integrated Security=True");
                     conn.Open();
                     SqlCommand cmd = new SqlCommand("INSERT INTO userTable(username,userPassword,name,surname,dob,gender,userStatus,jobTitle,userType) VALUES(@user,@pwd,@name,@surname,@dob,@gender,'active',@jobTitle,'staff')", conn);
                     cmd.Parameters.AddWithValue("@user", txtUsername.Text);
@@ -84,7 +84,7 @@ namespace petcare
         public int checkUsername()
         {
             //Create SqlConnection
-            SqlConnection con = new SqlConnection(@"Data Source=kaveer-pc\SQL12HOMEMASTER;Initial Catalog=petcare;Integrated Security=True");
+            SqlConnection con = new SqlConnection(@"Data Source=KAVEER-PC\MSSQL;Initial Catalog=petcare;Integrated Security=True");
             SqlCommand cmd = new SqlCommand("select * from userTable where username = @username ", con);
             cmd.Parameters.AddWithValue("@username", txtUsername.Text);
             con.Open();

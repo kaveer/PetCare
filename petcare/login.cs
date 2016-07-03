@@ -52,7 +52,7 @@ namespace petcare
         public void checkAdmin()
         {
             //Create SqlConnection
-            SqlConnection con = new SqlConnection(@"Data Source=kaveer-pc\SQL12HOMEMASTER;Initial Catalog=petcare;Integrated Security=True");
+            SqlConnection con = new SqlConnection(@"Data Source=KAVEER-PC\MSSQL;Initial Catalog=petcare;Integrated Security=True");
             SqlCommand cmd = new SqlCommand("select * from userTable where userStatus = 'active' and userType = 'admin' and username = @username and userPassword = @password ", con);
             cmd.Parameters.AddWithValue("@username", txtUsername.Text);
             cmd.Parameters.AddWithValue("@password", MD5Hash(txtPwd.Text));
@@ -79,7 +79,7 @@ namespace petcare
         public void checkStaff()
         {
             //Create SqlConnection
-            SqlConnection con = new SqlConnection(@"Data Source=kaveer-pc\SQL12HOMEMASTER;Initial Catalog=petcare;Integrated Security=True");
+            SqlConnection con = new SqlConnection(@"Data Source=KAVEER-PC\MSSQL;Initial Catalog=petcare;Integrated Security=True");
             SqlCommand cmd = new SqlCommand("select * from userTable where userStatus = 'active' and userType = 'staff' and username = @username and userPassword = @password ", con);
             cmd.Parameters.AddWithValue("@username", txtUsername.Text);
             cmd.Parameters.AddWithValue("@password", MD5Hash(txtPwd.Text));

@@ -40,7 +40,7 @@ namespace petcare
             {
                 lblErrorMsg.Text = "Enter RefNo";
             }
-            SqlConnection Conn = new SqlConnection(@"Data Source=kaveer-pc\SQL12HOMEMASTER;Initial Catalog=petcare;Integrated Security=True");
+            SqlConnection Conn = new SqlConnection(@"Data Source=KAVEER-PC\MSSQL;Initial Catalog=petcare;Integrated Security=True");
             SqlCommand Comm1 = new SqlCommand("select * from customerTable where refNo = @refno and customerStatus = 'active' ", Conn);
             Comm1.Parameters.AddWithValue("@refno", txtRefNo.Text);
             Conn.Open();
@@ -71,7 +71,7 @@ namespace petcare
             // display petname in combobox
             DataSet ds2;
             SqlConnection conn = new SqlConnection();
-            conn.ConnectionString = @"Data Source=kaveer-pc\SQL12HOMEMASTER;Initial Catalog=petcare;Integrated Security=True";
+            conn.ConnectionString = @"Data Source=KAVEER-PC\MSSQL;Initial Catalog=petcare;Integrated Security=True";
             conn.Open();
             SqlDataAdapter daSearch = new SqlDataAdapter("select * from productTable where productStatus = 'active'", conn);
             ds2 = new DataSet();
@@ -88,7 +88,7 @@ namespace petcare
             // display petname in combobox
             DataSet ds2;
             SqlConnection conn = new SqlConnection();
-            conn.ConnectionString = @"Data Source=kaveer-pc\SQL12HOMEMASTER;Initial Catalog=petcare;Integrated Security=True";
+            conn.ConnectionString = @"Data Source=KAVEER-PC\MSSQL;Initial Catalog=petcare;Integrated Security=True";
             conn.Open();
             SqlDataAdapter daSearch = new SqlDataAdapter("select distinct(productType) from productDetailsTable where productDetailStatus = 'active'", conn);
             ds2 = new DataSet();
@@ -120,7 +120,7 @@ namespace petcare
                 {
                     checkUser();
 
-                    SqlConnection Conn = new SqlConnection(@"Data Source=kaveer-pc\SQL12HOMEMASTER;Initial Catalog=petcare;Integrated Security=True");
+                    SqlConnection Conn = new SqlConnection(@"Data Source=KAVEER-PC\MSSQL;Initial Catalog=petcare;Integrated Security=True");
                     SqlCommand Comm1 = new SqlCommand("select * from productTable as p inner join productDetailsTable as pd on pd.productId=p.productId  where category= @cat and productType = @type and Productweight = @wei and quantity >= 1", Conn);
                     Comm1.Parameters.AddWithValue("@cat", ddlCategory.SelectedValue.ToString());
                     Comm1.Parameters.AddWithValue("@type", ddlType.SelectedValue.ToString());
@@ -151,7 +151,7 @@ namespace petcare
 
         private void purchaseProduct(int customerId, int productId)
         {
-            SqlConnection conn = new SqlConnection(@"Data Source=kaveer-pc\SQL12HOMEMASTER;Initial Catalog=petcare;Integrated Security=True");
+            SqlConnection conn = new SqlConnection(@"Data Source=KAVEER-PC\MSSQL;Initial Catalog=petcare;Integrated Security=True");
             conn.Open();
             SqlCommand cmd = new SqlCommand("insert into purchaseTable(customerId , productDetailId , purchaseDate , purchaseStatus ,quantityPurchase) values (@cusId ,@proId, @date,'active',@quan)", conn);
             cmd.Parameters.AddWithValue("@cusId", customerId);
@@ -170,7 +170,7 @@ namespace petcare
 
         private void updateQuantity(int quantity , int productId)
         {
-            SqlConnection conn = new SqlConnection(@"Data Source=kaveer-pc\SQL12HOMEMASTER;Initial Catalog=petcare;Integrated Security=True");
+            SqlConnection conn = new SqlConnection(@"Data Source=KAVEER-PC\MSSQL;Initial Catalog=petcare;Integrated Security=True");
             conn.Open();
             SqlCommand cmd = new SqlCommand("update productDetailsTable set quantity = @quan where productDetailId = @proId", conn);
             cmd.Parameters.AddWithValue("@quan", quantity);
@@ -181,7 +181,7 @@ namespace petcare
 
         private void displayUsingGridView()
         {
-            using (SqlConnection con = new SqlConnection(@"Data Source=kaveer-pc\SQL12HOMEMASTER;Initial Catalog=petcare;Integrated Security=True"))
+            using (SqlConnection con = new SqlConnection(@"Data Source=KAVEER-PC\MSSQL;Initial Catalog=petcare;Integrated Security=True"))
             {
                 con.Open();
                 using (SqlDataAdapter adapter = new SqlDataAdapter("select brand , category , productType , Productweight , quantityPurchase , purchaseDate  from customerTable as c inner join purchaseTable as p on c.customerId = p.customerId inner join productDetailsTable as pd on p.productDetailId = pd.productDetailId inner join productTable as pt on pt.productId = pd.productId where purchaseDate = '" + DateTime.Today.ToString("yyyy-MM-dd") + "'", con))

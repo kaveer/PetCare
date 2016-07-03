@@ -29,7 +29,7 @@ namespace petcare
                     {
                         lblErrorMsg.Text = "Enter RefNo";
                     }
-                    SqlConnection Conn = new SqlConnection(@"Data Source=kaveer-pc\SQL12HOMEMASTER;Initial Catalog=petcare;Integrated Security=True");
+                    SqlConnection Conn = new SqlConnection(@"Data Source=KAVEER-PC\MSSQL;Initial Catalog=petcare;Integrated Security=True");
                     SqlCommand Comm1 = new SqlCommand("select * from customerTable where refNo = @refno and customerStatus = 'active' ", Conn);
                     Comm1.Parameters.AddWithValue("@refno", txtRefNo.Text);
                     Conn.Open();
@@ -52,7 +52,7 @@ namespace petcare
                   // display petname in combobox
                     DataSet ds2;
                     SqlConnection conn = new SqlConnection();
-                    conn.ConnectionString = @"Data Source=kaveer-pc\SQL12HOMEMASTER;Initial Catalog=petcare;Integrated Security=True";
+                    conn.ConnectionString = @"Data Source=KAVEER-PC\MSSQL;Initial Catalog=petcare;Integrated Security=True";
                     conn.Open();
                     SqlDataAdapter daSearch = new SqlDataAdapter("select petName from customerTable as c inner join petTable as p on p.customerId = c.customerId inner join breedTable as b on b.breedId = p.breedId inner join petTypeTable as pt on pt.petTypeId = b.petTypeId where c.customerId = '" + VariableCustomerId + "' and customerStatus ='active'", conn);
                     ds2 = new DataSet();
@@ -75,7 +75,7 @@ namespace petcare
         {
             try
             {
-                SqlConnection Conn = new SqlConnection(@"Data Source=kaveer-pc\SQL12HOMEMASTER;Initial Catalog=petcare;Integrated Security=True");
+                SqlConnection Conn = new SqlConnection(@"Data Source=KAVEER-PC\MSSQL;Initial Catalog=petcare;Integrated Security=True");
                 SqlCommand Comm1 = new SqlCommand("select petId,gender,color,petDetails,breedName,petType from customerTable as c inner join petTable as p on p.customerId = c.customerId inner join breedTable as b on b.breedId = p.breedId inner join petTypeTable as pt on pt.petTypeId = b.petTypeId where c.customerId = "+VariableCustomerId+" and customerStatus ='active' and petName = '"+petName+"'", Conn);
                 Conn.Open();
                 SqlDataReader DR1 = Comm1.ExecuteReader();
@@ -125,7 +125,7 @@ namespace petcare
                 }
                 else
                 {
-                    SqlConnection conn = new SqlConnection(@"Data Source=kaveer-pc\SQL12HOMEMASTER;Initial Catalog=petcare;Integrated Security=True");
+                    SqlConnection conn = new SqlConnection(@"Data Source=KAVEER-PC\MSSQL;Initial Catalog=petcare;Integrated Security=True");
                     conn.Open();
                     SqlCommand cmd = new SqlCommand("insert into treatmentTable(petId,sickness,treatment,prescription,cost,sterilization,vaccination,euthanasis, treatmentDate) values(@petid ,@sick ,@treat,@prescrip,@cost,@steri,@vacci,@enthu,@date)", conn);
                     cmd.Parameters.AddWithValue("@petid", variablePetId);
