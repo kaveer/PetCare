@@ -19,7 +19,7 @@ namespace petcare
             InitializeComponent();
         }
 
-        public static string MD5Hash(string text)
+        public static string MD5Hash(string text) //encrypt password
         {
             MD5 md5 = new MD5CryptoServiceProvider();
             md5.ComputeHash(ASCIIEncoding.ASCII.GetBytes(text));
@@ -55,7 +55,7 @@ namespace petcare
             SqlConnection con = new SqlConnection(@"Data Source=KAVEER-PC\MSSQL;Initial Catalog=petcare;Integrated Security=True");
             SqlCommand cmd = new SqlCommand("select * from userTable where userStatus = 'active' and userType = 'admin' and username = @username and userPassword = @password ", con);
             cmd.Parameters.AddWithValue("@username", txtUsername.Text);
-            cmd.Parameters.AddWithValue("@password", MD5Hash(txtPwd.Text));
+            cmd.Parameters.AddWithValue("@password", MD5Hash(txtPwd.Text)); //MD5Hash it encrypted here when pswd is put
             con.Open();
             SqlDataAdapter adapt = new SqlDataAdapter(cmd);
             DataSet ds = new DataSet();
