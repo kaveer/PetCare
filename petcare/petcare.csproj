@@ -143,6 +143,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="SQL database\petCareDB" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
